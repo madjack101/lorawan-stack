@@ -199,11 +199,6 @@ message MACSettings {
   }
   DataRateIndexValue rx2_data_rate_index = 8;
 
-  message DataRateIndexValue {
-    DataRateIndex value = 1;
-  }
-  DataRateIndexValue rx2_data_rate_index = 8;
-
   google.protobuf.UInt64Value rx2_frequency = 9;
 }
 
