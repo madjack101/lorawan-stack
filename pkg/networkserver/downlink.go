@@ -138,7 +138,6 @@ func generateDownlink(ctx context.Context, dev *ttnpb.EndDevice, maxDownLen, max
 		fPending = fPending || !ok
 	}
 	cmds = append(cmds, dev.MACState.PendingRequests...)
-	logger.WithField("cmds", cmds).Debug("ADDED MAC")
 
 	cmdBuf := make([]byte, 0, maxDownLen)
 	for _, cmd := range cmds {
