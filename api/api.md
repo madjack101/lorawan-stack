@@ -35,6 +35,7 @@
 
 - [lorawan-stack/api/applicationserver.proto](#lorawan-stack/api/applicationserver.proto)
     - [ApplicationLink](#ttn.lorawan.v3.ApplicationLink)
+    - [ApplicationLinkStats](#ttn.lorawan.v3.ApplicationLinkStats)
     - [GetApplicationLinkRequest](#ttn.lorawan.v3.GetApplicationLinkRequest)
     - [SetApplicationLinkRequest](#ttn.lorawan.v3.SetApplicationLinkRequest)
   
@@ -796,6 +797,26 @@ where the user or organization is collaborator on.
 
 
 
+<a name="ttn.lorawan.v3.ApplicationLinkStats"/>
+
+### ApplicationLinkStats
+Link stats as monitored by the Application Server.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| linked_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| network_server_address | [string](#string) |  |  |
+| last_up_received_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| up_count | [uint64](#uint64) |  |  |
+| last_downlink_forwarded_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| downlink_count | [uint64](#uint64) |  |  |
+
+
+
+
+
+
 <a name="ttn.lorawan.v3.GetApplicationLinkRequest"/>
 
 ### GetApplicationLinkRequest
@@ -858,6 +879,7 @@ The As service manages the Application Server.
 | GetLink | [GetApplicationLinkRequest](#ttn.lorawan.v3.GetApplicationLinkRequest) | [ApplicationLink](#ttn.lorawan.v3.GetApplicationLinkRequest) |  |
 | SetLink | [SetApplicationLinkRequest](#ttn.lorawan.v3.SetApplicationLinkRequest) | [ApplicationLink](#ttn.lorawan.v3.SetApplicationLinkRequest) |  |
 | DeleteLink | [ApplicationIdentifiers](#ttn.lorawan.v3.ApplicationIdentifiers) | [.google.protobuf.Empty](#ttn.lorawan.v3.ApplicationIdentifiers) |  |
+| GetLinkStats | [ApplicationIdentifiers](#ttn.lorawan.v3.ApplicationIdentifiers) | [ApplicationLinkStats](#ttn.lorawan.v3.ApplicationIdentifiers) |  |
 
 
 <a name="ttn.lorawan.v3.AsEndDeviceRegistry"/>
