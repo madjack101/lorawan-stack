@@ -51,11 +51,13 @@ func (is *IdentityServer) SendEmail(ctx context.Context, f func(emails.Data) ema
 		return err
 	}
 	var data emails.Data
-	data.Network.Name = isConfig.OAuth.UI.SiteName // TODO: Should this be separate config?
-	url, _ := url.Parse(isConfig.OAuth.UI.CanonicalURL)
-	url.Path = "/"
-	data.Network.IdentityServerURL = url.String() // TODO: Should this be separate config?
-	data.Network.ConsoleURL = url.String()        // TODO: Should this be separate config?
+	data.Network.Name = isConfig.Email.Network.Name
+	identityServerURL, _ := url.Parse(isConfig.Email.Network.IdentityServerURL)
+	identityServerURL.Path = "/"
+	data.Network.IdentityServerURL = identityServerURL.String()
+	consoleURL, _ := url.Parse(isConfig.Email.Network.ConsoleURL)
+	consoleURL.Path = "/"
+	data.Network.ConsoleURL = consoleURL.String()
 	messageData := f(data)
 	if messageData == nil {
 		return nil
