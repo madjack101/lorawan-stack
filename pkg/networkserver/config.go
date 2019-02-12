@@ -30,7 +30,7 @@ type Config struct {
 	CooldownWindow      time.Duration          `name:"cooldown-window" description:"Time window starting right after deduplication window, during which, duplicate messages are discarded"`
 	DownlinkPriorities  DownlinkPriorityConfig `name:"downlink-priorities" description:"Downlink message priorities"`
 	NetID               types.NetID            `name:"net_id" description:"NetID of this Network Server"`
-	DefaultMACSettings  *ttnpb.MACSettings     `name:"mac_defaults" description:"Default MAC settings to use if not specified for device"`
+	DefaultMACSettings  ttnpb.MACSettings      `name:"mac_defaults" description:"Default MAC settings to use if not specified for device"`
 }
 
 // DownlinkPriorityConfig defines priorities for downlink messages.

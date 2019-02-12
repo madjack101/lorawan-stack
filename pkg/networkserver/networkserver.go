@@ -132,7 +132,7 @@ type NetworkServer struct {
 
 	handleASUplink func(ctx context.Context, ids ttnpb.ApplicationIdentifiers, up *ttnpb.ApplicationUp) (bool, error)
 
-	defaultMACSettings *ttnpb.MACSettings
+	defaultMACSettings ttnpb.MACSettings
 }
 
 // Option configures the NetworkServer.

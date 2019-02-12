@@ -715,6 +715,7 @@ func (ns *NetworkServer) handleUplink(ctx context.Context, up *ttnpb.UplinkMessa
 
 // newDevAddr generates a DevAddr for specified EndDevice.
 func (ns *NetworkServer) newDevAddr(context.Context, *ttnpb.EndDevice) types.DevAddr {
+	// TODO: Allow generating DevAddr from a prefix. (https://github.com/TheThingsNetwork/lorawan-stack/issues/130)
 	nwkAddr := make([]byte, types.NwkAddrLength(ns.netID))
 	random.Read(nwkAddr)
 	nwkAddr[0] &= 0xff >> (8 - types.NwkAddrBits(ns.netID)%8)

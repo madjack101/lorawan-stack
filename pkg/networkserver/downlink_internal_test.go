@@ -24,6 +24,7 @@ import (
 	"testing"
 	"time"
 
+	pbtypes "github.com/gogo/protobuf/types"
 	"github.com/mohae/deepcopy"
 	"github.com/smartystreets/assertions"
 	"go.thethings.network/lorawan-stack/pkg/band"
@@ -2547,7 +2548,7 @@ func TestProcessDownlinkTask(t *testing.T) {
 					Devices: &MockDeviceRegistry{
 						SetByIDFunc: tc.SetByIDFunc,
 					},
-					DefaultMACSettings: &ttnpb.MACSettings{
+					DefaultMACSettings: ttnpb.MACSettings{
 						StatusTimePeriodicity:  DurationPtr(0),
 						StatusCountPeriodicity: &pbtypes.UInt32Value{Value: 0},
 					},
@@ -2687,9 +2688,7 @@ func TestGenerateDownlink(t *testing.T) {
 					DevAddr:                &DevAddr,
 				},
 				MACSettings: &ttnpb.MACSettings{
-					StatusCountPeriodicity: &pbtypes.UInt32Value{
-						Value: 3,
-					},
+					StatusCountPeriodicity: &pbtypes.UInt32Value{Value: 3},
 				},
 				MACState: &ttnpb.MACState{
 					LoRaWANVersion:      ttnpb.MAC_V1_1,
@@ -3297,9 +3296,7 @@ func TestGenerateDownlink(t *testing.T) {
 					DevAddr:                &DevAddr,
 				},
 				MACSettings: &ttnpb.MACSettings{
-					StatusCountPeriodicity: &pbtypes.UInt32Value{
-						Value: 3,
-					},
+					StatusCountPeriodicity: &pbtypes.UInt32Value{Value: 3},
 				},
 				MACState: &ttnpb.MACState{
 					LoRaWANVersion:      ttnpb.MAC_V1_1,
@@ -3361,9 +3358,7 @@ func TestGenerateDownlink(t *testing.T) {
 						DevAddr:                &DevAddr,
 					},
 					MACSettings: &ttnpb.MACSettings{
-						StatusCountPeriodicity: &pbtypes.UInt32Value{
-							Value: 3,
-						},
+						StatusCountPeriodicity: &pbtypes.UInt32Value{Value: 3},
 					},
 					MACState: &ttnpb.MACState{
 						LoRaWANVersion:          ttnpb.MAC_V1_1,
@@ -3503,7 +3498,7 @@ func TestGenerateDownlink(t *testing.T) {
 
 			dev := CopyEndDevice(tc.Device)
 
-			b, appDown, err := generateDownlink(tc.Context, dev, math.MaxUint16, math.MaxUint16, frequencyplans.NewStore(test.FrequencyPlansFetcher), &ttnpb.MACSettings{
+			b, appDown, err := generateDownlink(tc.Context, dev, math.MaxUint16, math.MaxUint16, frequencyplans.NewStore(test.FrequencyPlansFetcher), ttnpb.MACSettings{
 				StatusTimePeriodicity:  DurationPtr(0),
 				StatusCountPeriodicity: &pbtypes.UInt32Value{Value: 0},
 			})

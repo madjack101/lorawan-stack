@@ -75,7 +75,7 @@ const optimalADRUplinkCount = 20
 // DefaultADRMargin is the default ADR margin used if not specified in MACSettings of the device or NS-wide defaults.
 const DefaultADRMargin = 15
 
-func adaptDataRate(dev *ttnpb.EndDevice, fps *frequencyplans.Store, defaults *ttnpb.MACSettings) error {
+func adaptDataRate(dev *ttnpb.EndDevice, fps *frequencyplans.Store, defaults ttnpb.MACSettings) error {
 	ups := dev.RecentADRUplinks
 	if len(ups) == 0 {
 		return nil
@@ -118,7 +118,7 @@ func adaptDataRate(dev *ttnpb.EndDevice, fps *frequencyplans.Store, defaults *tt
 
 	if dev.MACSettings != nil && dev.MACSettings.ADRMargin != nil {
 		margin -= dev.MACSettings.ADRMargin.Value
-	} else if defaults != nil && defaults.ADRMargin != nil {
+	} else if defaults.ADRMargin != nil {
 		margin -= defaults.ADRMargin.Value
 	} else {
 		margin -= DefaultADRMargin

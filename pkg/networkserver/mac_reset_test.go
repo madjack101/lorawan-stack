@@ -76,7 +76,7 @@ func TestHandleResetInd(t *testing.T) {
 					SupportsJoin:      false,
 					FrequencyPlanID:   test.EUFrequencyPlanID,
 				}
-				if err := ResetMACState(dev, frequencyplans.NewStore(test.FrequencyPlansFetcher), nil); err != nil {
+				if err := ResetMACState(dev, frequencyplans.NewStore(test.FrequencyPlansFetcher), ttnpb.MACSettings{}); err != nil {
 					t.Fatalf("Failed to reset MACState: %v", errors.Stack(err))
 				}
 
@@ -132,7 +132,7 @@ func TestHandleResetInd(t *testing.T) {
 					SupportsJoin:      false,
 					FrequencyPlanID:   test.EUFrequencyPlanID,
 				}
-				if err := ResetMACState(dev, frequencyplans.NewStore(test.FrequencyPlansFetcher), nil); err != nil {
+				if err := ResetMACState(dev, frequencyplans.NewStore(test.FrequencyPlansFetcher), ttnpb.MACSettings{}); err != nil {
 					t.Fatalf("Failed to reset MACState: %v", errors.Stack(err))
 				}
 
@@ -168,7 +168,7 @@ func TestHandleResetInd(t *testing.T) {
 
 			var err error
 			evs := collectEvents(func() {
-				err = handleResetInd(test.Context(), dev, tc.Payload, frequencyplans.NewStore(test.FrequencyPlansFetcher), nil)
+				err = handleResetInd(test.Context(), dev, tc.Payload, frequencyplans.NewStore(test.FrequencyPlansFetcher), ttnpb.MACSettings{})
 			})
 			if tc.Error != nil && !a.So(err, should.EqualErrorOrDefinition, tc.Error) ||
 				tc.Error == nil && !a.So(err, should.BeNil) {

@@ -61,7 +61,7 @@ func searchUplinkChannel(freq uint64, dev *ttnpb.EndDevice) (uint8, error) {
 	return 0, errUplinkChannelNotFound.WithAttributes("frequency", freq)
 }
 
-func resetMACState(dev *ttnpb.EndDevice, fps *frequencyplans.Store, defaults *ttnpb.MACSettings) error {
+func resetMACState(dev *ttnpb.EndDevice, fps *frequencyplans.Store, defaults ttnpb.MACSettings) error {
 	fp, band, err := getDeviceBandVersion(dev, fps)
 	if err != nil {
 		return err
@@ -162,7 +162,7 @@ outerDown:
 
 	if dev.GetMACSettings().GetRx1Delay() != nil {
 		dev.MACState.DesiredParameters.Rx1Delay = dev.MACSettings.Rx1Delay.Value
-	} else if defaults.GetRx1Delay() != nil {
+	} else if defaults.Rx1Delay != nil {
 		dev.MACState.DesiredParameters.Rx1Delay = defaults.Rx1Delay.Value
 	}
 
@@ -170,7 +170,7 @@ outerDown:
 		dev.MACState.DesiredParameters.Rx2Frequency = dev.MACSettings.Rx2Frequency.Value
 	} else if fp.Rx2Channel != nil {
 		dev.MACState.DesiredParameters.Rx2Frequency = fp.Rx2Channel.Frequency
-	} else if defaults.GetRx2Frequency() != nil {
+	} else if defaults.Rx2Frequency != nil {
 		dev.MACState.DesiredParameters.Rx2Frequency = defaults.Rx2Frequency.Value
 	}
 
@@ -178,7 +178,7 @@ outerDown:
 		dev.MACState.DesiredParameters.Rx2DataRateIndex = dev.MACSettings.Rx2DataRateIndex.Value
 	} else if fp.DefaultRx2DataRate != nil {
 		dev.MACState.DesiredParameters.Rx2DataRateIndex = ttnpb.DataRateIndex(*fp.DefaultRx2DataRate)
-	} else if defaults.GetRx2DataRateIndex() != nil {
+	} else if defaults.Rx2DataRateIndex != nil {
 		dev.MACState.DesiredParameters.Rx2DataRateIndex = defaults.Rx2DataRateIndex.Value
 	}
 

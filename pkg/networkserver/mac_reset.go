@@ -27,7 +27,7 @@ var (
 	evtEnqueueResetConfirmation = defineEnqueueMACConfirmationEvent("reset", "device reset")()
 )
 
-func handleResetInd(ctx context.Context, dev *ttnpb.EndDevice, pld *ttnpb.MACCommand_ResetInd, fps *frequencyplans.Store, defaults *ttnpb.MACSettings) error {
+func handleResetInd(ctx context.Context, dev *ttnpb.EndDevice, pld *ttnpb.MACCommand_ResetInd, fps *frequencyplans.Store, defaults ttnpb.MACSettings) error {
 	if pld == nil {
 		return errNoPayload
 	}

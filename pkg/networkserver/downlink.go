@@ -51,11 +51,11 @@ var errNoDownlink = errors.Define("no_downlink", "no downlink to send")
 
 const DefaultClassCTimeout = 15 * time.Second
 
-func deviceClassCTimeout(dev *ttnpb.EndDevice, defaults *ttnpb.MACSettings) time.Duration {
+func deviceClassCTimeout(dev *ttnpb.EndDevice, defaults ttnpb.MACSettings) time.Duration {
 	ret := DefaultClassCTimeout
 	if dev.MACSettings != nil && dev.MACSettings.ClassCTimeout != nil {
 		ret = *dev.MACSettings.ClassCTimeout
-	} else if defaults != nil && defaults.ClassCTimeout != nil {
+	} else if defaults.ClassCTimeout != nil {
 		ret = *defaults.ClassCTimeout
 	}
 	return ret
@@ -72,7 +72,7 @@ func deviceClassCTimeout(dev *ttnpb.EndDevice, defaults *ttnpb.MACSettings) time
 // For example, a sequence of 'NewChannel' MAC commands could be generated for a
 // device operating in a region where a fixed channel plan is defined in case
 // dev.MACState.CurrentParameters.Channels is not equal to dev.MACState.DesiredParameters.Channels.
-func generateDownlink(ctx context.Context, dev *ttnpb.EndDevice, maxDownLen, maxUpLen uint16, fps *frequencyplans.Store, defaults *ttnpb.MACSettings) ([]byte, *ttnpb.ApplicationDownlink, error) {
+func generateDownlink(ctx context.Context, dev *ttnpb.EndDevice, maxDownLen, maxUpLen uint16, fps *frequencyplans.Store, defaults ttnpb.MACSettings) ([]byte, *ttnpb.ApplicationDownlink, error) {
 	if dev.MACState == nil {
 		return nil, nil, errUnknownMACState
 	}

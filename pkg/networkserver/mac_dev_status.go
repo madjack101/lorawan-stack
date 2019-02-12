@@ -32,18 +32,18 @@ const (
 	DefaultStatusTimePeriodicity         = time.Hour
 )
 
-func enqueueDevStatusReq(ctx context.Context, dev *ttnpb.EndDevice, maxDownLen, maxUpLen uint16, defaults *ttnpb.MACSettings) (uint16, uint16, bool) {
+func enqueueDevStatusReq(ctx context.Context, dev *ttnpb.EndDevice, maxDownLen, maxUpLen uint16, defaults ttnpb.MACSettings) (uint16, uint16, bool) {
 	cp := DefaultStatusCountPeriodicity
 	if dev.GetMACSettings().GetStatusCountPeriodicity() != nil {
 		cp = dev.MACSettings.StatusCountPeriodicity.Value
-	} else if defaults.GetStatusCountPeriodicity() != nil {
+	} else if defaults.StatusCountPeriodicity != nil {
 		cp = defaults.StatusCountPeriodicity.Value
 	}
 
 	tp := DefaultStatusTimePeriodicity
 	if dev.GetMACSettings().GetStatusTimePeriodicity() != nil {
 		tp = *dev.MACSettings.StatusTimePeriodicity
-	} else if defaults.GetStatusCountPeriodicity() != nil {
+	} else if defaults.StatusCountPeriodicity != nil {
 		tp = *defaults.StatusTimePeriodicity
 	}
 
