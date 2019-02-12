@@ -7347,15 +7347,15 @@
         "adr_margin": {
           "type": "number",
           "format": "float",
-          "description": "The ADR margin tells the Network Server how much margin it should add in ADR requests.\nA bigger margin is less efficient, but gives a better chance of successful reception."
+          "description": "The ADR margin tells the network server how much margin it should add in ADR requests.\nA bigger margin is less efficient, but gives a better chance of successful reception."
         },
         "class_b_timeout": {
           "type": "string",
-          "description": "Deadline for a device in class B mode to respond to requests from the Network Server."
+          "description": "Deadline for the device to respond to requests from the Network Server."
         },
         "class_c_timeout": {
           "type": "string",
-          "description": "Deadline for a device in class C mode to respond to requests from the Network Server."
+          "description": "Deadline for the device to respond to requests from the Network Server."
         },
         "status_time_periodicity": {
           "type": "string",
