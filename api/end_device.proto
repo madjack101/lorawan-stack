@@ -176,18 +176,18 @@ message EndDeviceVersion {
 }
 
 message MACSettings {
-  google.protobuf.BoolValue use_adr = 1 [(gogoproto.customname) = "UseADR"];
-  // The ADR margin tells the network server how much margin it should add in ADR requests.
+  google.protobuf.BoolValue use_adr = 1 [(gogoproto.customname) = "UseADR", (gogoproto.moretags) = "name:\"use-adr\" description:\"Whether ADR should be used for devices that request it\""];
+  // The ADR margin tells the Network Server how much margin it should add in ADR requests.
   // A bigger margin is less efficient, but gives a better chance of successful reception.
-  google.protobuf.FloatValue adr_margin = 2 [(gogoproto.customname) = "ADRMargin"];
-  // Deadline for the device to respond to requests from the Network Server.
-  google.protobuf.Duration class_b_timeout = 3 [(gogoproto.stdduration) = true];
-  // Deadline for the device to respond to requests from the Network Server.
-  google.protobuf.Duration class_c_timeout = 4 [(gogoproto.stdduration) = true];
+  google.protobuf.FloatValue adr_margin = 2 [(gogoproto.customname) = "ADRMargin", (gogoproto.moretags) = "name:\"adr-margin\" description:\"The margin Network Server should add in ADR requests\""];
+  // Deadline for a device in class B mode to respond to requests from the Network Server.
+  google.protobuf.Duration class_b_timeout = 3 [(gogoproto.stdduration) = true, (gogoproto.moretags) = "name:\"class-b-timeout\" description:\"Deadline for a device in class B mode to respond to requests from the Network Server\""];
+  // Deadline for a device in class C mode to respond to requests from the Network Server.
+  google.protobuf.Duration class_c_timeout = 4 [(gogoproto.stdduration) = true, (gogoproto.moretags) = "name:\"class-c-timeout\" description:\"Deadline for a device in class C mode to respond to requests from the Network Server\""];
   // The interval after which a DevStatusReq MACCommand shall be sent.
-  google.protobuf.Duration status_time_periodicity = 5 [(gogoproto.stdduration) = true];
+  google.protobuf.Duration status_time_periodicity = 5 [(gogoproto.stdduration) = true, (gogoproto.moretags) = "name:\"status-time-periodicity\" description:\"The interval after which a DevStatusReq MACCommand shall be sent\""];
   // Number of uplink messages after which a DevStatusReq MACCommand shall be sent.
-  google.protobuf.UInt32Value status_count_periodicity = 6;
+  google.protobuf.UInt32Value status_count_periodicity = 6 [(gogoproto.moretags) = "name:\"status-count-periodicity\" description:\"Number of uplink messages after which a DevStatusReq MACCommand shall be sent\""];
 
   message RxDelayValue {
     RxDelay value = 1;
