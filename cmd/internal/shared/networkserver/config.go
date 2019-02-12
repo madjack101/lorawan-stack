@@ -21,10 +21,6 @@ import (
 	"go.thethings.network/lorawan-stack/pkg/ttnpb"
 )
 
-func durationPtr(v time.Duration) *time.Duration {
-	return &v
-}
-
 // DefaultNetworkServerConfig is the default configuration for the NetworkServer
 var DefaultNetworkServerConfig = networkserver.Config{
 	DeduplicationWindow: 200 * time.Millisecond,
